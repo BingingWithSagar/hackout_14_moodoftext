@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+	<style>
+		body {background-color: powderblue;}
+		h1   {color: green;}
+		p    {color: red;}
+		.btn { margin:20px; }
+		label{color:green; font-size: 20px;}
+		.help-text{ display: none; }
+	</style>
+
+</head>
+<body>
+	<div class="container">
+		<h1>LOGIN</h1>
+		<form method="POST" action = "/login/">
+			{%csrf_token%}
+			{{form}}
+			<input class="waves-effect waves-light btn" type="submit" value="login">
+		</form>
+
+		<a class="waves-effect waves-light btn" href="/signup">signup</a>
+	</div>	
+</body>
+</html>

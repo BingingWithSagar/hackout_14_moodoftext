@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+	<style>
+		body {background-color: powderblue;}
+		h1   {color: green;}
+		p    {color: red;}
+		.btn { margin-bottom:20px; }
+		label{color:green; font-size: 20px;}
+		.helptext{ display: none; }
+		.entry{ font-size: 25px; font-weight: bold;}
+	</style>
+</head>
+<body>
+
+	{%for ent in entries%}
+		<h1>{{ent.title}}</h1>
+		<h5>{{ent.date}}</h5>
+		<div class="entry">{{ent.entry}}</div>
+
+	{%endfor%}
+	
+</body>
+</html>

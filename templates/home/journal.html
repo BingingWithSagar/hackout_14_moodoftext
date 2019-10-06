@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+	<style>
+		body {background-color: powderblue;}
+		h1   {color: green;}
+		p    {color: red;}
+		.btn { margin:20px; }
+		label{color:green; font-size: 20px;}
+		.helptext{ display: none; }
+		h4{ color:green; font-size: 40px; }
+		.box{border: 2px solid black;margin:10px;padding: 20px;}
+	</style>
+</head>
+<body>
+	<a href="/logout" class="waves-effect waves-light btn">LOG OUT</a>
+	<div class="container">
+	<h1>All Journals</h1>
+		<a href="/entry" class="waves-effect waves-light btn">MAKE A NEW ENTRY</a>
+		<br>
+		{% for ent, text in entries %}
+		<div class = "box">
+			{% if ent.title == None%}
+				<h4 href="">Untitled</h4>
+			{% endif %}
+			{% if flag == 1%}
+				<h4>{{ent.dep}}</h4>
+			{% endif %}
+			
+			{% if ent.title != None%}
+				<h4 href="">{{ent.title}}</h4>
+			{% endif %}
+			
+				<h8>{{text}}</h8>
+			
+
+			<form method="post" action="/single/">
+				{%csrf_token%}
+				<input style="display:none" type="text" name="title" value="{{ ent.pk }}">
+				<input type="submit" name="value" value="SEE ENTRY">
+			</form>
+			<form method="post" action="/result/">
+				{%csrf_token%}
+				<input style="display:none" type="text" name="title" value="{{ ent.pk }}">
+				<input type="submit" name="value" value="ANALYSIS">
+			</form>
+			<h6>{{ent.date}}</h6>
+			<br>
+		</div>
+		{% endfor %}
+	</div>
+</body>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE HTML>
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+	<style>
+		body {background-color: powderblue;}
+		h1   {color: green;}
+		p    {color: red;}
+		.btn { margin-bottom:20px; }
+		label{color:green; font-size: 20px;}
+		.helptext{ display: none; }
+	</style>
+
+</head>
+<body>
+	<h1>Psych Page</h1>
+	<br>
+	<a href="/logout" class="waves-effect waves-light btn">LOG OUT</a>
+
+	<div class="container">
+		<form method="POST" action="/psych/" >
+			{%csrf_token%}
+			Patients name: <input type="text" name="name">
+			<input type="submit" value = "GRAPH" class="waves-effect waves-light btn">
+		</form>
+		<form method="POST" action="/psychentries/" >
+			{%csrf_token%}
+			Patients name: <input type="text" name="name">
+			<input type="submit" value = "entries" class="waves-effect waves-light btn">
+		</form>
+	</div>
+	{% if flag == 1 %}	
+		<h3> HAPPINESS</h3>
+		<div id="myDiv1"></div>
+		<h3> ANGRY</h3>
+		<div id="myDiv2"></div>
+		<h3> BORED</h3>
+		<div id="myDiv3"></div>
+		<h3> SAD</h3>
+		<div id="myDiv4"></div>
+		<h3> FEAR</h3>
+		<div id="myDiv5"></div>
+		<h3> EXCITED</h3>
+		<div id="myDiv6"></div>
+		<h3> DEPRESSION</h3>
+		<div id="myDiv7"></div>
+	{% endif %}
+</body>
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<script type="text/javascript">
+	var happylist = {{ happy }};
+	var angrylist = {{ angry }};
+	var boredlist = {{ bored }};
+	var sadlist = {{ sad }};
+	var fearlist = {{ fear }};
+	var excitedlist = {{ excited }};
+	var dep = {{ dep }};
+
+	var trace1 = {
+ 	y: happylist,
+ 	type: 'scatter',
+};
+var trace2 = {
+ 	y: angrylist,
+ 	type: 'scatter',
+};
+var trace3 = {
+ 	y: boredlist,
+ 	type: 'scatter',
+};
+var trace4 = {
+ 	y: sadlist,
+ 	type: 'scatter',
+};
+var trace5 = {
+ 	y: fearlist,
+ 	type: 'scatter',
+};
+var trace6 = {
+ 	y: excitedlist,
+ 	type: 'scatter',
+};
+var trace7 = {
+ 	y: dep,
+ 	type: 'scatter',
+};
+
+
+var data1 = [trace1];
+var data2 = [trace2];
+var data3 = [trace3];
+var data4 = [trace4];
+var data5 = [trace5];
+var data6 = [trace6];
+var data7 = [trace7];
+
+
+Plotly.newPlot('myDiv1', data1, {}, {showSendToCloud: true});
+Plotly.newPlot('myDiv2', data2, {}, {showSendToCloud: true});
+Plotly.newPlot('myDiv3', data3, {}, {showSendToCloud: true});
+Plotly.newPlot('myDiv4', data4, {}, {showSendToCloud: true});
+Plotly.newPlot('myDiv5', data5, {}, {showSendToCloud: true});
+Plotly.newPlot('myDiv6', data6, {}, {showSendToCloud: true});
+Plotly.newPlot('myDiv7', data7, {}, {showSendToCloud: true});
+	
+</script>
+</html>

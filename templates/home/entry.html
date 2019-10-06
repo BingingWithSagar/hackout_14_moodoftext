@@ -1,0 +1,31 @@
+<!DOCTYPE>
+<!DOCTYPE html>
+<html>
+<head>
+	<title>journal</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+	<style>
+		body {background-color: powderblue;}
+		h1   {color: green;}
+		p    {color: red;}
+		.btn { margin:20px; }
+		textarea {height: 400px; background-color: white; box-shadow: 10px 10px 5px grey;}
+		label{color:green; font-size: 20px;}
+
+	</style>
+</head>
+<body>
+	<a href="/logout" class="waves-effect waves-light btn">LOG OUT</a>
+	<a href="/" class="waves-effect waves-light btn">SEE ALL</a>
+	<div class="container">
+		<h1>Your Journal</h1>
+		<form method="POST",action="/post/ ">
+			{%csrf_token%}
+			<div class="text">
+				{{form}}
+			</div>
+			<input type="submit" class="waves-effect waves-light btn" name="post">
+		</form>
+	</div>
+</body>
+</html>
